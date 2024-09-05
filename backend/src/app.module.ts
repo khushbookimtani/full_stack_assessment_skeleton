@@ -6,7 +6,12 @@ import { UserHomeMappingModule } from './modules/user_home_mappings/user_home_ma
 import { User } from './modules/users/user.entity';
 import { Home } from './modules/homes/home.entity';
 import { UserHomeMapping } from './modules/user_home_mappings/user_home_mapping.entity';
-
+import { HomeService } from './modules/homes/home.service';  
+import { UserService } from './modules/users/user.service';  
+import { HomeController } from './modules/homes/home.controller';  
+import { UserController } from './modules/users/user.controller';  
+import { HomeExistsConstraint } from './modules/homes/validators/home_exists.validator';  
+import { UserExistsConstraint } from './modules/users/validators/user_exists.validator';  
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -19,11 +24,14 @@ import { UserHomeMapping } from './modules/user_home_mappings/user_home_mapping.
       synchronize: false,
     }),
     TypeOrmModule.forFeature([User, Home, UserHomeMapping]),
-    UserModule,
-    HomeModule,
-    UserHomeMappingModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [HomeController, UserController],
+  providers: [
+    HomeService,
+    UserService,
+    HomeExistsConstraint,
+    UserExistsConstraint,
+  ],
+  exports: [HomeService, UserService],
 })
 export class AppModule {}
