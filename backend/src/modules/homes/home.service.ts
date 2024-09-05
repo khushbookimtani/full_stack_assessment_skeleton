@@ -14,6 +14,10 @@ export class HomeService {
 
   ) {}
 
+  async findById(id: string): Promise<Home | undefined> {
+    return this.homeRepository.findOne({ where: { id } });
+  }
+  
   async findByUser(userId: string, page: number): Promise<{ data: Home[], totalPages: number, totalCount: number }> {
     const pageSize = 50;
 

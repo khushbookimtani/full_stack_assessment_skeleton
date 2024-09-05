@@ -1,4 +1,5 @@
-import { Controller, Get, Param, Query, Put, Body, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Param, Query, Put, Body, HttpCode, HttpStatus,  UsePipes, ValidationPipe } from '@nestjs/common';
+import { UpdateUsersDto } from './dtos/update_users.dto';
 import { HomeService } from './home.service';
 
 @Controller('home')
@@ -13,7 +14,9 @@ export class HomeController {
 
   @Put('update-users')
   @HttpCode(HttpStatus.OK)
-  async updateUsers(@Body('homeId') homeId: string, @Body('userIds') userIds: string[]) {
-    await this.homeService.updateUsers(homeId, userIds);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async updateUsers(@Body() updateUsersDto: UpdateUsersDto) {
+    await this.homeService.updateUsers(updateUsersDto.homeId, updateUsersDto.userIds);
+    return { message: 'Users updated successfully' };
   }
 }

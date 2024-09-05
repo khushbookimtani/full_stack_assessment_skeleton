@@ -12,17 +12,22 @@ export class UserService {
     @InjectRepository(UserHomeMapping)
     private userHomeMappingRepository: Repository<UserHomeMapping>,
   ) {}
+  
+  async findById(id: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { id } });
+  }
 
   findAll(): Promise<User[]> {
     console.log(this.userRepository);
     return this.userRepository.find();
   }
 
-  findByHome(homeId: string): Promise<User[]> {
-    return this.userHomeMappingRepository.createQueryBuilder('uhm')
+  async findByHome(homeId: string): Promise<User[]> {
+    const uhms = await this.userHomeMappingRepository.createQueryBuilder('uhm')
       .innerJoinAndSelect('uhm.user', 'user')
       .where('uhm.home_id = :homeId', { homeId })
-      .getMany()
-      .then(uhms => uhms.map(uhm => uhm.user));
+      .getMany();
+    return uhms.map(uhm => uhm.user);
   }
+
 }
