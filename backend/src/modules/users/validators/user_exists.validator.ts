@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
-import { UserService } from '../user.service'; // Adjust the path as needed
+import { UserService } from '../user.service';
 
 @ValidatorConstraint({ name: 'userExists', async: true })
 @Injectable()
