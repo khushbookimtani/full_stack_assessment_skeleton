@@ -13,7 +13,6 @@ export const Header = () => {
 
     useEffect(()=>{
         dispatch(setUsers({data}));
-        console.log(users)
     }, [data]);
 
      return (
