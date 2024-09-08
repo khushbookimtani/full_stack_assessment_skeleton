@@ -50,7 +50,7 @@
     ![alt text](./docs/homes.png)
   
   - /user/find-by-home (GET)
-    ![alt text](./docs/user-home.png.png)
+    ![alt text](./docs/user-home.png)
     - if the id is not be be exposed, for security, it must be converted to POST route
 
 
