@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+## How to Run the Frontend Application
+1. Ensure that you have node installed on your machine
+2. Ensure that you are inside the frontend Directory
+```
+    cd frontend
+```
+3. Install the libraries/dependencies
+```
+    npm install 
+```
+4. Run the Server to serve the frontend. Ensure that the local port '3000' is free, ie. no other service is running on this port.
+```
+    npm run start
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Techstack Used
+1. JS Framework
+    - create-react-app
+2. CSS
+    - Tailwind css
+3. State Management
+    - Redux Toolkit 
+4. Data Fetching
+    - RTK Query 
+5. For skeletons/spinners
+    - react-loading-skeleton
 
-## Available Scripts
+## Solution Reached
+1. homes to be shown in cards after user select
+    - Created central store containing state of users data (store/userSlice.js.js) recieved from the api and the selectedUser
 
-In the project directory, you can run:
+    - The selectedUser changes whenever an option is selected from dropdown. The change in the central state triggers the    Home.jsx page to be reloaded with the updated selectedUser, leading to home/find-by-user/:userId api hit. The useEffect() in pages/Home.jsx, sets home state in store/homeSlice.js, orchestrating the components/CardList.jsx and components/Card.jsx to showcase proper data.
 
-### `npm start`
+    - Created central store containing state of homes data (store/homeSlice.js) recieved from the api. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    - Used RTK query (services/homeApi.js)  hitting home/find-by-user/:userId api
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    - The RTK query library manages caching, giving a better response time
 
-### `npm test`
+    - <![alt text](docs/edit-home.gif)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+2. edit user functionality 
+    - Used RTK query (services/userApi.js) for hitting /user/find-by-home api (services/homeApi.js - useGetAllHomesByUserQuery) and users for a home.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    - In order to identify which home is being edited, created a local state and passed it to the Modal. This ensures that only a  single Edit Modal exists in the DOM across application exists rather than seperate for each card, which is the correct approach.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - Created a local state of checkedUsers in Modal. This helped ensure that atleast 1 checkbox remains checked and no un-necessary update is made, if there is no change.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - On save hitting the home/update-users (PUT) api with the checkedUsersId and using the refetch() action provided by (services/homeApi.js - useGetAllHomesByUserQuery) passed to components/Modal.jsx as props from pages/Home.jsx
+    ![alt text](docs/edit-home.gif)
 
-### `npm run eject`
+3. handle data-fetching properly
+    - Used RTK Query to handing data-fetching
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    - This ensured caching and error-handling
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - Used react-loading-skeleton while data is being fetched
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. bonus - handled pagination
+    - handled pagination logic for fetching home cards (components/Pagination.jsx). Managed its state in (store/homeSlice.jsx)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

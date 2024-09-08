@@ -130,6 +130,11 @@ docker-compose -f docker-compose.initial.yml up --build -d
 ### solution
 
 > explain briefly your solution for this problem here
+  - created user, home and user_home_mapping table
+  - user table contains all users
+  - home table contains all homes
+  - user_home_mapping table contains user_id, and home_id mapping
+  Hence, the user_home table has been normalized in the sql/99_final_db_dump.sql script.
 
 ## 2. React SPA
 
@@ -221,6 +226,9 @@ docker-compose -f docker-compose.initial.yml up --build -d
 ### solution
 
 > explain briefly your solution for this problem here
+- Refer the following markdown file: 
+[Frontend README](../frontend/README.md)
+
 
 ## 3. Backend API development on Node
 
@@ -282,6 +290,9 @@ docker-compose -f docker-compose.initial.yml up --build -d
 ### solution
 
 > explain briefly your solution for this problem here
+- Refer the following markdown file: 
+[Backend README](../frontend/README.md)
+
 
 ## Submission Guidelines
 
