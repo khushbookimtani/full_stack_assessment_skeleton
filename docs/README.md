@@ -291,7 +291,7 @@ docker-compose -f docker-compose.initial.yml up --build -d
 
 > explain briefly your solution for this problem here
 - Refer the following markdown file: 
-[Backend README](../frontend/README.md)
+[Backend README](../backend/README.md)
 
 
 ## Submission Guidelines
