@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Header } from '../Components/Header'
-import { Modal } from '../Components/Modal'
-import { Pagination } from '../Components/Pagination'
+import { Header } from '../components/Header'
+import { Modal } from '../components/Modal'
+import { Pagination } from '../components/Pagination'
 import { useDispatch, useSelector } from 'react-redux'
-import { CardList } from '../Components/CardList'
+import { CardList } from '../components/CardList'
 import { useGetAllHomesByUserQuery } from '../services/homeApi'
 import { setHomes } from '../store/homeSlice'
 

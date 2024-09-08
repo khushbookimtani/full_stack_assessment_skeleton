@@ -1,6 +1,6 @@
 import './App.css';
-import { Card } from './Components/Card';
-import { Home } from './Pages/Home';
+import { Card } from './components/Card';
+import { Home } from './pages/Home';
 
 function App() {
   return (
