@@ -131,9 +131,13 @@ docker-compose -f docker-compose.initial.yml up --build -d
 
 > explain briefly your solution for this problem here
   - created user, home and user_home_mapping table
-  - user table contains all users
-  - home table contains all homes
-  - user_home_mapping table contains user_id, and home_id mapping
+    - user table contains all users
+    - home table contains all homes
+    - user_home_mapping table contains user_id, and home_id mapping
+    - uuids have been added to each table as primary keys, while maintaining unique username contraints for required columns.
+  - populated the 3 tables, using the data present in the user_home table. 
+  - I have not dropped the user_home table, since various pre-existing systems could be fetching data from it.
+    
   Hence, the user_home table has been normalized in the sql/99_final_db_dump.sql script.
 
 ## 2. React SPA
