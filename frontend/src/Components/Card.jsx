@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { Button } from './Button'
-import { Modal } from './Modal'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const Card = ({data, toggleModalShow}) => {
     return (
     <>
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
         <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{data.streetAddress}</h5>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{data.streetAddress || <Skeleton />}</h5>
             <ul className="text-sm font-medium text-gray-900 py-2">
                 <li className="w-full py-1">List Price: {data.listPrice} </li>
                 <li className="w-full py-1">State: {data.state} </li>
