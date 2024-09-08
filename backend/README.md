@@ -20,15 +20,18 @@
 
 ## Solution Reached
 1. Connecting with user, home and user_home_mapping table
-2. Since, wanted to demonstrate normalization in scripts, created user_home_mapping table to map many to many relationan between user and home ie.
+2. Since, wanted to demonstrate normalization in scripts, created user_home_mapping in the sql script, to map many to many relationan between user and home ie.
   - user has many homes
   - home belongs to many users
-3. This bridging table can be easily managed using the typeorm's relationship management. However, since I explicitly created the table in the script, to showcase how, it is to be normalized used that establish the relation, hence the 3 entities.
-4. Following are the endpoints created
+3. This bridging can be easily managed using the typeorm's relationship management. However, since I explicitly created the table in the script, to showcase how it is to be normalized, hence used that map the relation. Hence the 3 entities(user, home and user_home_mapping)
+4. The directory structure of the code follows domain driven approach. 
+
+5. Following are the endpoints created
   - /home/update-user (PUT)
     - successful update: 
       ![alt text](./docs/update-success.png)
-    - validation failures:
+
+    - handled validation of request, with response containing error bag:
       - invalid uuid (home)
         ![alt text](./docs/invalid-uuid.png)
       - id does not exist: no such home in db (home)
@@ -37,6 +40,7 @@
         ![alt text](./docs/user-does-not-exist.png)
       - invalid uuid (user)
         ![alt text](./docs/invalid-user-uuid.png)
+        
       - similarly, invalid json also has been handled
   
   - /user/find-all (GET)
