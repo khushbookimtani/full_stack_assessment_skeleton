@@ -59,5 +59,5 @@
 
 4. bonus - handled pagination
     - handled pagination logic for fetching home cards (components/Pagination.jsx). Managed its state in (store/homeSlice.jsx)
-    - ![alt text](docs/pagination.gif)
+    - ![alt text](docs/pagination-comp.gif)
 
