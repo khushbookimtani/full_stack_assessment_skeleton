@@ -2,29 +2,23 @@ import React, { useState } from 'react'
 import { Button } from './Button'
 import { Modal } from './Modal'
 
-export const Card = ({data}) => {
-    const [showModal,setShowModal] = useState(false)
-    
-    const toggleModalShow = () => {
-        setShowModal(!showModal)
-    }
+export const Card = ({data, toggleModalShow}) => {
     return (
     <>
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
         <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{data.address}</h5>
-            <ul class="text-sm font-medium text-gray-900 py-2">
-                <li className="w-full py-1">List Price:  </li>
-                <li className="w-full py-1">State: </li>
-                <li className="w-full py-1">Zip: </li>
-                <li className="w-full py-1">Sqft: </li>
-                <li className="w-full py-1">Beds: </li>
-                <li className="w-full py-1">Baths: </li>                
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{data.streetAddress}</h5>
+            <ul className="text-sm font-medium text-gray-900 py-2">
+                <li className="w-full py-1">List Price: {data.listPrice} </li>
+                <li className="w-full py-1">State: {data.state} </li>
+                <li className="w-full py-1">Zip: {data.zip}</li>
+                <li className="w-full py-1">Sqft: {data.sqft} </li>
+                <li className="w-full py-1">Beds: {data.beds} </li>
+                <li className="w-full py-1">Baths:  {data.baths}</li>                
             </ul>   
         </a>
-        <Button type='submit' buttonStyle='secondary' onClick={toggleModalShow}>Edit User</Button>
+        <Button type='submit' buttonStyle='primary' onClick={() => toggleModalShow(data.id)}>Edit User</Button>
     </div>
-    <Modal showModal={showModal} setShowModal={setShowModal}/>
     </>
   )
 }
