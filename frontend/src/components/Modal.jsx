@@ -11,7 +11,9 @@ export const Modal = ({ showModal, setShowModal, selectedHome, setSelectedHome, 
     const [change, setChange] = useState(false);
 
     const users = useSelector(state => state.users);
+    
     const [updateUsers] = useUpdateUsersMutation();
+    
     const [checkedUsers, setCheckedUsers] = useState([]);
 
     useEffect(() => {
