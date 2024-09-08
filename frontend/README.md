@@ -37,7 +37,7 @@
 
     - The RTK query library manages caching, giving a better response time
 
-    - <![alt text](docs/edit-home.gif)
+    - <![alt text](docs/home-page.gif)
 
 
 2. edit user functionality 
@@ -59,4 +59,5 @@
 
 4. bonus - handled pagination
     - handled pagination logic for fetching home cards (components/Pagination.jsx). Managed its state in (store/homeSlice.jsx)
+    - ![alt text](docs/pagination.gif)
 
