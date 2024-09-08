@@ -45,13 +45,11 @@
   - /home/find-by-user (GET) 
     - query with pagination, at a time 50 records will be fetched, hit
       /home/find-by-user/:userId?page=pageNo
-    - if the id is not be be exposed, for security, it must be converted to POST 
 
     ![alt text](./docs/homes.png)
   
   - /user/find-by-home (GET)
     ![alt text](./docs/user-home.png)
-    - if the id is not be be exposed, for security, it must be converted to POST route
 
 
 
