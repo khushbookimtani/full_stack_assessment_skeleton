@@ -1,17 +1,29 @@
 ## How to Run the Frontend Application
-1. Ensure that you have node installed on your machine
-2. Ensure that you are inside the frontend Directory
-```
-    cd frontend
-```
-3. Install the libraries/dependencies
-```
-    npm install 
-```
-4. Run the Server to serve the frontend. Ensure that the local port '3000' is free, ie. no other service is running on this port.
-```
-    npm run start
-```
+## How to run the Assessment
+### Running the Application
+#### Prerequisites
+1. Ensure Docker and Docker Compose are installed on your machine.
+
+2. Setup and Running Instructions
+  - Clone the Repository
+  - Navigate to the Root Directory   
+    Ensure you're in the root directory where the docker-compose-orchestrate-services.yml file is located.
+  - Build and Start the Containers
+    ``` 
+    docker compose -f docker-compose-orchestrate-services.yml up --build 
+
+    ```
+  - Verify the Services
+    - Frontend: Open your web browser and navigate to http://localhost:3000 to view the frontend application.
+    - Backend: The backend service should be available at http://localhost:3030.
+    - MySQL: The MySQL database will be accessible on localhost:3306 from the host machine.
+
+  - Stopping the Containers
+    ```
+    docker compose -f docker-compose-orchestrate-services.yml down
+
+    ```
+  - NOTE : There is no need to start and run the docker-compose.final.yml. The orchestration container takes care of the entire assessment container orchestration.
 
 ## Techstack Used
 1. JS Framework

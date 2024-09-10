@@ -1,0 +1,55 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nestjs_backendPt
+    ports:
+      - "3030:3030"
+    depends_on:
+      - mysql_ctn_final
+    environment:
+      - DB_HOST=mysql_ctn_final
+      - DB_PORT=3306
+      - DB_USERNAME=db_user
+      - DB_PASSWORD=6equj5_db_user
+      - DB_DATABASE=home_db
+    networks:
+      - app_net
+
+  mysql_ctn_final:
+    build:
+      context: .
+      dockerfile: Dockerfile.final_db
+    container_name: mysql_ctn_final
+    environment:
+      MYSQL_ROOT_PASSWORD: 6equj5_root
+      MYSQL_DATABASE: home_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: 6equj5_db_user
+    restart: always
+    volumes:
+      - mysql_vol:/var/lib/mysql:rw
+    ports:
+      - 3306:3306
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
+
+volumes:
+  mysql_vol:
